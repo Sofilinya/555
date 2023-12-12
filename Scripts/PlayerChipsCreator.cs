@@ -2,53 +2,47 @@
 
 public class PlayerChipsCreator : MonoBehaviour
 {
-    //public int PlayersCount = 2;                       // Количество игроков в игре
-
-    public PlayerChip PlayerChipPrefab;
-    public Sprite[] PlayerChipSprites = new Sprite[0];
-    private PlayerChip[] playersChips;
-
     public PlayerChip PlayerChipPrefab;                // Префаб фишки игрока
-  public Sprite[] PlayerChipSprites = new Sprite[0]; // Массив спрайтов фишек игроков размером 0
-
-
+    public Sprite[] PlayerChipSprites = new Sprite[0]; // Массив спрайтов фишек игроков размером 0
+    private PlayerChip[] playersChips = null;
 
     public PlayerChip[] SpawnPlayersChips(int count)
     {
-        // Создаём массив нужной длины для фишек игроков
-        playersChips = new PlayerChip[count];
+        playersChips = new PlayerChip[count];     // Создаём массив нужной длины для фишек игроков
 
         // Проходим по циклу длиной в количество игроков
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count && i < PlayerChipSprites.Length; i++)
         {
-            // Если спрайтов фишек не хватает для всех игроков
-            if (i >= PlayerChipSprites.Length)
-            {
-                // Прекращаем создание фишек (выходим из цикла)
-                break;
-            }
-            // Создаём фишку для текущего игрока из массива спрайтов
-            playersChips[i] = SpawnPlayerChip(PlayerChipSprites[i]);
+            playersChips[i] = SpawnPlayerChip(PlayerChipSprites[i]);  // Создаём фишку для текущего игрока из массива спрайтов
         }
-        // Возвращаем массив созданных фишек игроков
-        return playersChips;
+
+        return playersChips;  // Возвращаем массив созданных фишек игроков
     }
 
     private PlayerChip SpawnPlayerChip(Sprite sprite)
     {
         // Если спрайт отсутствует
         if (!sprite)
-        {
-            // Возвращаем null (пустое множество)
             return null;
-        }
-        // Создаём новую фишку игрока из префаба фишки
-        PlayerChip newPlayerChip = Instantiate(PlayerChipPrefab, transform.position, transform.rotation);
 
-        // Устанавливаем спрайт фишки
-        newPlayerChip.SetSprite(sprite);
+        PlayerChip newPlayerChip = Instantiate(PlayerChipPrefab, transform.position, transform.rotation); // Создаём новую фишку игрока из префаба фишки
 
-        // Возвращаем созданную фишку игрока
+        newPlayerChip.SetSprite(sprite);  // Устанавливаем спрайт фишки
+
         return newPlayerChip;
+    }
+
+    public void Clear()
+    {
+        DestroyPlayersChips();    // Удаляем все фишки игроков
+    }
+
+    private void DestroyPlayersChips()
+    {
+        // Проходим по каждой фишке игрока
+        for (int i = 0; i < playersChips.Length; i++)
+        {
+            Destroy(playersChips[i].gameObject);    // Уничтожаем их игровые объекты
+        }
     }
 }

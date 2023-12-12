@@ -29,7 +29,7 @@ public class PlayersChipsMover : MonoBehaviour
         for (int i = 0; i < _playersChips.Length; i++)
         {
             // Вызываем метод для обновления позиции фишки с номером i
-            RefreshChipPosition(i);
+           // RefreshChipPosition(i);
         }
     }
 
