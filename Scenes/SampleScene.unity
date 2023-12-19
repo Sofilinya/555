@@ -537,6 +537,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &645756719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 645756721}
+  - component: {fileID: 645756720}
+  m_Layer: 0
+  m_Name: GameCubeThrower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &645756720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645756719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1d2aee31de7fd94da75c9fe46e6171d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameStateChanger: {fileID: 1400744929}
+  GameCubePrefab: {fileID: 7074372971985169879, guid: 4143e9221080a65409e4bb7e61725734, type: 3}
+  GameCubePoint: {fileID: 890522605}
+--- !u!4 &645756721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645756719}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.038911372, y: -0.077822804, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &684913547
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +1044,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1400744928}
+  - component: {fileID: 1400744929}
   m_Layer: 0
   m_Name: GameStateChanger
   m_TagString: Untagged
@@ -1019,6 +1067,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1400744929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400744927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f2e73f6468734c4baea298572444402, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayersCount: 2
+  PlayersChipsCreator: {fileID: 0}
+  PlayersTurnChanger: {fileID: 0}
+  PlayersChipsMover: {fileID: 0}
+  GameField: {fileID: 0}
 --- !u!1 &1402600407
 GameObject:
   m_ObjectHideFlags: 0
