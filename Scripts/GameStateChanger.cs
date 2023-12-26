@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameStateChanger : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class GameStateChanger : MonoBehaviour
     public PlayerChipsMover PlayersChipsMover;       // Скрипт перемещения фишек
     public GameField GameField;                      // Скрипт игрового поля
 
+    public GameObject GameScreenGO;             // Экран игры
+    public Button ThrowButton;              // Кнопка бросков кубика
+    public GameObject GameEndScreenGO;          // Экран конца игры
+    public TextMeshProUGUI WinText;                  // Надпись о победе
 
     private void Start()
     {
@@ -28,13 +33,14 @@ public class GameStateChanger : MonoBehaviour
 
         PlayersTurnChanger.StartGame(playersChips);     // Готовим игроков к началу игры
         PlayersChipsMover.StartGame(playersChips);      // Задаём начальную позицию фишек игроков
-        //SetScreens(true);                               // Показываем экран игры
+        SetScreens(true);                               // Показываем экран игры
+        SetThrowButtonInteractable(true);
     }
 
     // Метод для завершения игры
     private void EndGame()
     {
-        //SetScreens(false);    // Показываем экран конца игры
+        SetScreens(false);    // Показываем экран конца игры
     }
 
     // Метод для перезапуска по кнопке
@@ -45,22 +51,59 @@ public class GameStateChanger : MonoBehaviour
     }
 
     // Метод для установки видимости игровых экранов
+    private void SetScreens(bool inGame)
+    {
+        GameScreenGO.SetActive(inGame);     // Если игра в процессе, показываем экран игры и скрываем экран конца игры
+        GameEndScreenGO.SetActive(!inGame); // Иначе скрываем экран игры и показываем экран конца игры 
+    }
+
+    // Метод для установки надписи о победе
+    private void SetWinText(int playerId)
+    {
+        WinText.text = $"Player {playerId + 1} WIN!"; // Отображаем текст с номером победившего игрока
+    }
 
     public void DoPlayerTurn(int steps)
     {
         int currentPlayerId = PlayersTurnChanger.GetCurrentPlayerId();      // Получаем номер текущего игрока
         PlayersChipsMover.MoveChip(currentPlayerId, steps);                 // Двигаем фишку текущего игрока на заданное число шагов
 
-        // Проверяем, достиг ли игрок финиша
+
+        SetThrowButtonInteractable(false);                                  // Блокируем возможность бросить кубик
+
+        /*// Проверяем, достиг ли игрок финиша
         bool isPlayerFinished = PlayersChipsMover.CheckPlayerFinished(currentPlayerId);
         if (isPlayerFinished)
         {                 // Если игрок на финише
-            //SetWinText(currentPlayerId);          // Устанавливаем надпись о победе
+          SetWinText(currentPlayerId);          // Устанавливаем надпись о победе
+          EndGame();                            // Переходим к экрану конца игры
+        }
+        else
+        {
+          PlayersTurnChanger.MovePlayerTurn();  // Передаём ход следующему игроку
+        }*/
+    }
+
+    private void SetThrowButtonInteractable(bool value)
+    {
+        ThrowButton.interactable = value;     // Блокируем или активируем кнопку в зависимости от value
+    }
+
+    public void ContinueGameAfterChipAnimation()
+    {
+        int currentPlayerId = PlayersTurnChanger.GetCurrentPlayerId();                // Получаем номер текущего игрока
+        bool isPlayerFinished = PlayersChipsMover.CheckPlayerFinished(currentPlayerId); // Определяем, достиг ли игрок финиша
+
+        // Если игрок на финише
+        if (isPlayerFinished)
+        {
+            SetWinText(currentPlayerId);          // Устанавливаем надпись о победе
             EndGame();                            // Переходим к экрану конца игры
         }
         else
         {
             PlayersTurnChanger.MovePlayerTurn();  // Передаём ход следующему игроку
+            SetThrowButtonInteractable(true);     // Разрешаем ему бросить кубик
         }
     }
 }
