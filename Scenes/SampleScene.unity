@@ -770,7 +770,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameStateChanger: {fileID: 1400744929}
   GameCubePrefab: {fileID: 7074372971985169879, guid: 4143e9221080a65409e4bb7e61725734, type: 3}
-  GameCubePoint: {fileID: 890522605}
   CubeThrowAnimator: {fileID: 0}
 --- !u!4 &645756721
 Transform:
@@ -785,7 +784,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1221403826}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &684913547
 GameObject:
@@ -1046,6 +1045,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 890522605}
+  - component: {fileID: 890522606}
+  - component: {fileID: 890522607}
   m_Layer: 0
   m_Name: GameCubePoint
   m_TagString: Untagged
@@ -1066,8 +1067,36 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1221403826}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -180, y: 180, z: -180}
+--- !u!111 &890522606
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890522604}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 14d4c815eab4e384caea150d482b2f62, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 14d4c815eab4e384caea150d482b2f62, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &890522607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890522604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431c315d62f2e5048a6fa68dd25798f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &926822544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1489,9 +1518,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1840093792}
-  - {fileID: 890522605}
   - {fileID: 645756721}
   - {fileID: 1400744928}
+  - {fileID: 890522605}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1709,7 +1738,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1221403826}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1400744929
 MonoBehaviour:
